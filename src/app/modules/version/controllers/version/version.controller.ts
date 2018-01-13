@@ -1,5 +1,6 @@
-import {Controller, Get} from '@nestjs/common';
+import {Controller, Get, HttpStatus} from '@nestjs/common';
 import * as git from 'nodegit';
+import {HttpException} from "@nestjs/core";
 
 @Controller('version')
 export class VersionController {
@@ -16,6 +17,10 @@ export class VersionController {
     }
     catch (err) {
       console.log(err);
+      throw new HttpException({
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: err.message
+      }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     return commit;
