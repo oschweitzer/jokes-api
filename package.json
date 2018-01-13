@@ -1,5 +1,5 @@
 {
-  "name": "Jokes API",
+  "name": "joke-api",
   "version": "1.0.0",
   "description": "An API for dad and chuck norris jokes",
   "license": "MIT",
