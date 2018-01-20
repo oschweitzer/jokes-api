@@ -1,10 +1,16 @@
 import {Controller, Get, HttpStatus} from '@nestjs/common';
 import * as git from 'nodegit';
 import {HttpException} from "@nestjs/core";
+import * as woodcutter from 'woodcutter';
 
 @Controller('version')
 export class VersionController {
-  constructor() {}
+
+  private logger;
+
+  constructor() {
+    this.logger = new woodcutter.WoodCutter();
+  }
 
   @Get()
   async getVersion() {
@@ -13,10 +19,10 @@ export class VersionController {
       const repo = await git.Repository.open(process.cwd());
       const headCommit = await repo.getHeadCommit();
       commit = await headCommit.sha();
-      console.log(`HEAD commit sha : ${commit}`);
+      this.logger.info(`HEAD commit SHA-1 : ${commit}`);
     }
     catch (err) {
-      console.log(err);
+      this.logger.error(err.message, err);
       throw new HttpException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
         error: err.message

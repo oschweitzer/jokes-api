@@ -1,10 +1,15 @@
 import {Controller, Get, HttpStatus} from '@nestjs/common';
 import {ChuckJokeService} from "../../services/chuck-joke/chuck-joke.service";
 import {HttpException} from "@nestjs/core";
+import * as woodcutter from 'woodcutter';
 
 @Controller('chuck-jokes')
 export class ChuckJokeController {
-    constructor(private chuckJokeService: ChuckJokeService) {}
+  private logger;
+
+  constructor(private chuckJokeService: ChuckJokeService) {
+    this.logger = new woodcutter.WoodCutter();
+  }
 
   @Get()
   async getJoke() {
@@ -13,7 +18,7 @@ export class ChuckJokeController {
       joke = await this.chuckJokeService.getJoke('https://api.chucknorris.io/jokes/random');
     }
     catch (err) {
-      console.log(err);
+      this.logger.error(err.message, err);
       throw new HttpException({
         status: HttpStatus.INTERNAL_SERVER_ERROR,
         error: err.message
