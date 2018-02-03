@@ -29,3 +29,10 @@ $ npm install
 ```
 $ npm run start
 ```
+
+### Configuration
+
+| Environment variable  | Default value                           |
+|-----------------------|-----------------------------------------|
+| DAD_JOKES_API         | https://icanhazdadjoke.com              |
+| CHUCK_JOKES_API       | https://api.chucknorris.io/jokes/random |
