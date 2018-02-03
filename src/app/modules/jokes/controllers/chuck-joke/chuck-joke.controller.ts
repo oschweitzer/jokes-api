@@ -2,6 +2,7 @@ import {Controller, Get, HttpStatus} from '@nestjs/common';
 import {ChuckJokeService} from "../../services/chuck-joke/chuck-joke.service";
 import {HttpException} from "@nestjs/core";
 import * as woodcutter from 'woodcutter';
+import {environment} from "../../../../../environments/environment";
 
 @Controller('chuck-jokes')
 export class ChuckJokeController {
@@ -15,7 +16,7 @@ export class ChuckJokeController {
   async getJoke() {
     let joke = null;
     try {
-      joke = await this.chuckJokeService.getJoke('https://api.chucknorris.io/jokes/random');
+      joke = await this.chuckJokeService.getJoke(environment.chuckNorrisJokesApi);
     }
     catch (err) {
       this.logger.error(err.message, err);
