@@ -1,19 +1,19 @@
 import {Component} from '@nestjs/common';
-import * as pRequest from "request-promise-native";
+import * as axios from 'axios';
 
 @Component()
 export abstract class JokeService {
 
   async getJoke(url:string){
     const options = {
-      uri : url,
+      url : url,
       method: 'GET',
       headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        "content-type": "application/json"
       }
     };
-    const joke = await pRequest(options);
-    return joke;
-
+    const joke = await axios.default.request(options);
+    return joke.data;
   }
 }
