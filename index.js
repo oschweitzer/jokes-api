@@ -1,1 +1,1 @@
-require('./bin/server');
+require('./dist/server');
