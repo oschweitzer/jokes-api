@@ -3,6 +3,7 @@ import {DadJokeService} from "../../services/dad-joke/dad-joke.service";
 import {HttpException} from "@nestjs/core";
 import * as woodcutter from 'woodcutter';
 import {environment} from "../../../../../environments/environment";
+import {ApiResponse} from "../../../responses/models/api-response.model";
 
 @Controller('dad-jokes')
 export class DadJokeController {
@@ -16,6 +17,7 @@ export class DadJokeController {
     let joke = null;
     try {
       joke = await this.dadJokeService.getJoke(environment.dadJokesApi);
+      this.logger.debug('', joke);
     }
     catch (err) {
       this.logger.error(err.message, err);
@@ -24,7 +26,6 @@ export class DadJokeController {
         error: err.message
       }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    return joke;
+    return new ApiResponse(joke, "Successfully get the joke");
   }
 }
