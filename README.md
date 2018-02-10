@@ -24,10 +24,22 @@ Then run this command :
 $ npm install
 ```
 
+OR with Docker
+
+```bash
+docker build -t joke-api .
+```
+
 ### Start
 
-```
+```bash
 $ npm run start
+```
+
+OR with Docker
+
+```bash
+docker run -p 3000:3000 joke-api
 ```
 
 ### Configuration
