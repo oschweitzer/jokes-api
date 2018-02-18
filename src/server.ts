@@ -8,7 +8,7 @@ import {ValidationPipe} from "@nestjs/common";
 const app: Promise<INestApplication> = NestFactory.create(ApplicationModule);
 app.then(instance => {
       const logger = new woodcutter.WoodCutter();
-      instance.use(cors());
+      instance.enableCors();
       instance.listen(3000, () =>
           logger.info('Application is listening on port 3000')
       )
