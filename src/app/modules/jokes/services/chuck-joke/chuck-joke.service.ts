@@ -1,7 +1,7 @@
-import {Component} from '@nestjs/common';
-import {JokeService} from "../joke-service";
+import {Injectable} from '@nestjs/common';
+import {JokeService} from '../joke-service';
 
-@Component()
+@Injectable()
 export class ChuckJokeService extends JokeService {
     constructor() {
       super();

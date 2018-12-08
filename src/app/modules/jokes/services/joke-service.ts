@@ -1,7 +1,7 @@
-import {Component} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import * as axios from 'axios';
 
-@Component()
+@Injectable()
 export abstract class JokeService {
 
   async getJoke(url:string){
