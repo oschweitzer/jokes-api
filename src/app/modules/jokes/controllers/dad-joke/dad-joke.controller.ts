@@ -1,9 +1,8 @@
-import {Controller, Get, HttpStatus} from '@nestjs/common';
-import {DadJokeService} from "../../services/dad-joke/dad-joke.service";
-import {HttpException} from "@nestjs/core";
+import {Controller, Get, HttpException, HttpStatus} from '@nestjs/common';
 import * as woodcutter from 'woodcutter';
-import {environment} from "../../../../../environments/environment";
-import {ApiResponse} from "../../../responses/models/api-response.model";
+import {environment} from '../../../../../environments/environment';
+import {ApiResponse} from '../../../responses/models/api-response.model';
+import {DadJokeService} from '../../services/dad-joke/dad-joke.service';
 
 @Controller('dad-jokes')
 export class DadJokeController {
