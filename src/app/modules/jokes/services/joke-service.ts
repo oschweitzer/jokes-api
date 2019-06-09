@@ -1,11 +1,12 @@
 import {Injectable} from '@nestjs/common';
+import {AxiosRequestConfig} from 'axios';
 import * as axios from 'axios';
 
 @Injectable()
 export abstract class JokeService {
 
   async getJoke(url:string){
-    const options = {
+    const options: AxiosRequestConfig = {
       url : url,
       method: 'GET',
       headers: {

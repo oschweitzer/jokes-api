@@ -9,7 +9,7 @@ import {DadJokeService} from "./services/dad-joke/dad-joke.service";
     ChuckJokeController,
     DadJokeController
   ],
-  components: [
+  providers: [
     ChuckJokeService,
     DadJokeService
   ]
